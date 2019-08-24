@@ -1,0 +1,109 @@
+Past commands:
+
+
+'''
+try:
+    lc_list2 = getListFreq(500,8000,8)
+    v3w_x2, v3w_y = mn_scans(lc_list2, averaged_time = 3, n_sweeps = 4, lc_const = [1,1.25,1.5,1.75,2])
+    data = [lc_list,v3w_x2]
+except:
+    pass
+
+try:   
+    csv_writer('many_volts',data,title,direc=direc,flatten='y')
+except:
+    pass
+
+try:
+    xval,yval = mn_avg_sweeps(v3w_x2,v3w_y)
+    csv_writer('many_volts_avg',data,title,direc=direc,flatten='y')
+except:
+    pass
+
+lc_list3 = getListVolt(0.25,3.25,13)
+try:
+    tell_lockin('SENS26')
+    v1w_x3, v3w_y = mn_scans(lc_list3, scan_v_or_f = 'volt',harm=1, averaged_time = 3, n_sweeps = 4, lc_const = 1000)
+    data = [lc_list3,v1w_x3]
+    title=['volt','v1w']
+except:
+    pass
+try:
+    csv_writer('volt_sweep',data,title,direc=direc)
+except:
+    pass
+
+try:
+    lc_list4 = getListFreq(5000,20000,10)
+    tell_lockin('SENS22')
+    v3w_x4, v3w_y = mn_scans(lc_list4, averaged_time = 3, n_sweeps = 5, lc_const = 1.5) 
+except:
+    pass
+'''
+    
+'''saving data normally
+title1 = ['freq','v3w_avg','v1w_x','v1w_y','v1w_sh_x']
+title2 = ['freq','v3w','v1w','v1w_sh_x']
+
+csv_writer('BCB-1',output,title1,direc=direc)
+csv_writer('Pdata-BCB-1',data,title2,direc=direc)
+'''
+
+
+'''
+lc_list1 = getListFreq(600,5400,30)
+n_sweeps = 5
+x1,y1 = n_scans(lc_list = lc_list1 , n_sweeps = n_sweeps, averaged_time= 3)
+csv_writer('test1',[x1,lc_list1],['v3w','volt'])
+
+lc_list2 = getListFreq(600,5400,12)
+n_sweeps = 20
+x2,y2 = n_scans(lc_list = lc_list2 , n_sweeps = n_sweeps, averaged_time= 1)
+x2 = np.array(x2)
+x2 = x2.flatten()
+csv_writer('test2',[x2,lc_list2],['v3w','volt'])
+
+
+lc_list3 = getListFreq(600,5400,12)
+n_sweeps = 20
+x3,y3 = n_scans(lc_list = lc_list3 , n_sweeps = n_sweeps, averaged_time= 5)
+x3 = np.array(x3)
+x3 = x3.flatten()
+csv_writer('test3',[x3,lc_list3],['v3w','volt'])
+'''
+'''
+lc_list4 = getListFreq(600,5400,12)
+n_sweeps = 1
+x4,y4 = mn_scans(lc_list = lc_list4 , n_sweeps = n_sweeps, averaged_time= 5, stb_time = 15,lc_const=[3,1.8])
+x4 = np.array(x4)
+x4 = x4.flatten()
+csv_writer('test4_TARA8',[x4,lc_list4],['v3w','volt'])
+'''
+'''
+lc_list5 = getListFreq(600,5400,5)
+n_sweeps = 20
+x5,y5 = n_scans(lc_list = lc_list5 , n_sweeps = n_sweeps, averaged_time= 5, stb_time = 15)
+x5 = np.array(x5)
+x5 = x5.flatten()
+csv_writer('test5',[x5,lc_list5],['v3w','volt'])
+
+
+lc_list6 = getListFreq(600,5400,12)
+n_sweeps = 1
+x6,y6 = n_scans(lc_list = lc_list6 , n_sweeps = n_sweeps, averaged_time= 350, stb_time = 10)
+x6 = np.array(x6)
+x6 = x6.flatten()
+csv_writer('test6',[x6,lc_list6],['v3w','volt'])
+
+tell_lockin('SENS26')
+lc_list7 = getListVolt(0.5,3.2,12)
+n_sweeps = 5
+x7,y7 = n_scans(lc_list = lc_list7 , n_sweeps = n_sweeps, averaged_time= 5, 
+                stb_time = 10, scan_v_or_f = 'volt',harm=1,lc_const = 800)
+x7 = np.array(x7)
+x7 = x7.flatten()
+csv_writer('test7',[x7,lc_list7],['v3w','volt'])
+'''
+beep()
+beep()
+beep()
